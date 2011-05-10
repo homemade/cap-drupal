@@ -16,7 +16,7 @@ Capistrano::Configuration.instance(:must_exist).load do
     Clear all drupal caches. Invoke drush cc all.
     DESC
     task :clearcache, :roles => :db do
-      run "sudo drush -r \"#{deploy_to}\" cc all"
+      run "drush -r #{deploy_to}/current cc all"
     end
 
     namespace :clean do
@@ -66,7 +66,7 @@ Capistrano::Configuration.instance(:must_exist).load do
       DESC
       task :dump, :roles => :db do
         filename = "#{application}-#{stage}-#{now}.sql"
-        run "sudo drush -r \"#{deploy_to}\" sql-dump > ~/#{filename}"
+        run "drush -r #{deploy_to}/current sql-dump > ~/#{filename}"
       end
 
       desc <<-DESC 
@@ -102,8 +102,8 @@ Capistrano::Configuration.instance(:must_exist).load do
       task :backup, :role => :web do
         size
         dirname = "~/#{application}-#{stage}-#{now}-ugc"
-        run "sudo cp -a #{ugc_path} #{dirname}"
-        run "sudo chown -R #{user}:#{user} #{dirname}"
+        run "cp -a #{ugc_path} #{dirname}"
+        run "chown -R #{user}:#{user} #{dirname}"
         run "touch #{dirname}"
       end
 
