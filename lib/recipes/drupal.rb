@@ -10,13 +10,17 @@ Capistrano::Configuration.instance(:must_exist).load do
     set :max_keep_backup, 3
   end
 
+  unless exists?(:drush)
+    set :drush, "/usr/bin/drush"
+  end
+
   namespace :drupal do
 
     desc <<-DESC 
     Clear all drupal caches. Invoke drush cc all.
     DESC
     task :clearcache, :roles => :db do
-      run "drush -r #{release_path} cc all"
+      run "#{drush} -r #{current_path} cc all"
     end
 
     namespace :clean do
@@ -66,7 +70,7 @@ Capistrano::Configuration.instance(:must_exist).load do
       DESC
       task :dump, :roles => :db do
         filename = "#{application}-#{stage}-#{now}.sql"
-        run "drush -r #{release_path} sql-dump > ~/#{filename}"
+        run "#{drush} -r #{current_path} sql-dump > ~/#{filename}"
       end
 
       desc <<-DESC 
@@ -86,6 +90,17 @@ Capistrano::Configuration.instance(:must_exist).load do
       end
     end
 
+    namespace :web do
+      desc "Set Drupal maintainance mode to online."
+      task :enable do
+        run "#{drush} vset --always-set site_offline 0"
+      end
+
+      desc "Set Drupal maintainance mode to off-line."
+      task :disable do
+        run "#{drush} vset --always-set site_offline 1"
+      end
+    end
     # user generated content
     namespace :ugc do
 
