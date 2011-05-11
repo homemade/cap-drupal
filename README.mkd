@@ -34,31 +34,17 @@ This the first releases. Feedbacks, fork and comments welcomed :)
 
 	# list tasks with capistrano
 	cap -T
-        
-  cap drupal:clean:db:check   # List db dumps to delete.
-  
-  cap drupal:clean:db:commit  # Delete db dumps over max_keep_dump.
-  
-  cap drupal:clean:ugc:check  # List ugc backups to delete.
-  
-  cap drupal:clean:ugc:commit # Delete ugc backups over max_keep_backup
-  
-  cap drupal:clearcache       # Clear all drupal caches.
-  
-  cap drupal:db:download      # Dump the db and download to local dir.
-  
-  cap drupal:db:dump          # Dump the db to cap user home directory.
-  
-  cap drupal:db:latest        # Download latest db dump to current local dir.
-  
-  cap drupal:ugc:backup       # Copy user generated content to cap user home.
-  
-  cap drupal:ugc:download     # Backup and dowload user generated content.
-  
-  cap drupal:ugc:latest       # Rsync the latest ugc backup to a local dir.
-  
-  cap drupal:ugc:size         # Show the ugc files current size (du -sh).
-  
-  cap drupal:web:disable      # Set Drupal maintainance mode to off-line.
-  
-  cap drupal:web:enable       # Set Drupal maintainance mode to online.
+	cap drupal:clean:db:check   # List db dumps to delete.
+	cap drupal:clean:db:commit  # Delete db dumps over max_keep_dump.
+	cap drupal:clean:ugc:check  # List ugc backups to delete.
+	cap drupal:clean:ugc:commit # Delete ugc backups over max_keep_backup
+	cap drupal:clearcache       # Clear all drupal caches.
+	cap drupal:db:download      # Dump the db and download to local dir.
+	cap drupal:db:dump          # Dump the db to cap user home directory.
+	cap drupal:db:latest        # Download latest db dump to current local dir.
+	cap drupal:ugc:backup       # Copy user generated content to cap user home.
+	cap drupal:ugc:download     # Backup and dowload user generated content.
+	cap drupal:ugc:latest       # Rsync the latest ugc backup to a local dir.
+	cap drupal:ugc:size         # Show the ugc files current size (du -sh).
+	cap drupal:web:disable      # Set Drupal maintainance mode to off-line.
+	cap drupal:web:enable       # Set Drupal maintainance mode to online.
